@@ -30,6 +30,8 @@ public class LoginController {
 	@FXML
 	private Button btnLogin;
 	
+	private Staff staff;
+	
 	public void Login(ActionEvent event) throws IOException {
 //		DataAccess da = new DataAccessFacade();
 //		Staff staff = (Staff)da.readStaff(txtUsername.getText());
@@ -37,12 +39,37 @@ public class LoginController {
 //			
 //		}if(staff.getPassword().equals(txtPwd)){
 //			lbInformation.setText("You are fool");
-			Parent root = FXMLLoader.load(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml"));
-			Scene scene = new Scene(root);
-			Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			app_stage.setScene(scene);
-			app_stage.show();			
+		
+		if (staff == null) {
+			return;
+		}
+		if (staff.isLibrarian()) {
+			startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
+		} else {
+			startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
+		}
 //		}
 		
+	}
+	private void startForLibrarian(String url, ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
+		librarianNaviController.initDate(staff);
+		app_stage.setScene(scene);
+		app_stage.show();			
+		
+	}
+	private void startForAdministrator(String url, ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		AdministratorNaviController administratorNaviController = loader.<AdministratorNaviController>getController();
+		administratorNaviController.initDate(staff);
+		app_stage.setScene(scene);
+		app_stage.show();			
 	}
 }

@@ -25,7 +25,12 @@ public class Staff implements Serializable{
 	public Authorization getAu() {
 		return au;
 	}
-	
+	public boolean isLibrarian() {
+		return isLibrarian;
+	}
+	public boolean isAdministrator() {
+		return isAdmistrator;
+	}
 	
 	
 	
