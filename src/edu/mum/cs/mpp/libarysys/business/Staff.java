@@ -8,6 +8,8 @@ public class Staff implements Serializable{
 	private String id;
 	private String password;
 	private Authorization au;
+	private boolean isLibrarian;
+	private boolean isAdmistrator;
 	public Staff(String id, String password, Authorization au) {
 		super();
 		this.id = id;
