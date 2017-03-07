@@ -16,12 +16,12 @@ import edu.mum.cs.mpp.libarysys.business.Staff;
 
 public class DataAccessFacade implements DataAccess {
 
-	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
+	public static final String OUTPUT_DIR = System.getProperty("user.dir")
 			+ "/src/edu/mum/cs/mpp/libarysys/dataaccess/storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 	public static final String DATA_STAFF = "staff";
-	
-	
+
+
 	public void saveStaff(Staff staff) {
 		ObjectOutputStream out = null;
 		try {
@@ -38,14 +38,14 @@ public class DataAccessFacade implements DataAccess {
 			}
 		}
 	}
-	
+
 	public Staff readStaff(String staffId) {
 		ObjectInputStream in = null;
 		Staff staff = null;
 		Path path = null;
 		try {
 			File staffFolder = new File(OUTPUT_DIR.concat("/").concat(DATA_STAFF));
-			
+
 			File sFiles[] = staffFolder.listFiles();
 			for(File f:sFiles){
 				path = FileSystems.getDefault().getPath(OUTPUT_DIR.concat("/").concat(DATA_STAFF), f.getName());
@@ -55,8 +55,8 @@ public class DataAccessFacade implements DataAccess {
 					return staff;
 				}
 			}
-		
-			
+
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -69,7 +69,7 @@ public class DataAccessFacade implements DataAccess {
 		return null;
 	}
 
-	
+
 	public void saveLibraryMember(String name, LibraryMember member) {
 		ObjectOutputStream out = null;
 		try {
