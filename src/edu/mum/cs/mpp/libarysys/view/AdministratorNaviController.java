@@ -27,22 +27,27 @@ public class AdministratorNaviController implements Initializable {
 	private Button libraryNavi;
 	@FXML
 	private Button addCopies;
-	
+
 	private Staff staff;
-	
-	
+
+
 	public void addUser(ActionEvent event) throws IOException {
 		System.out.println("this in add user.");
 	}
 	public void updateUser(ActionEvent event) throws IOException {
 		System.out.println("this in update user.");
 		addBook.setDisable(false);
-		
+
 	}
 
 	public void addBook(ActionEvent event) throws IOException {
-		System.out.println("this in add book.");
-		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/NewBook.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(scene);
+		app_stage.show();
+
 	}
 
 	public void libraryNavi(ActionEvent event) throws IOException {
@@ -51,14 +56,14 @@ public class AdministratorNaviController implements Initializable {
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
-		librarianNaviController.initDate(staff);		
+		librarianNaviController.initDate(staff);
 		app_stage.setScene(scene);
-		app_stage.show();	
-		
+		app_stage.show();
+
 	}
 	public void addCopies(ActionEvent event) throws IOException {
 		System.out.println("this in add copies.");
-		
+
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
