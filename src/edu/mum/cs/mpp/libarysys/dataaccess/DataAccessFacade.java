@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 
@@ -102,6 +103,26 @@ public class DataAccessFacade implements DataAccess {
 			}
 		}
 		return member;
+	}
+
+	public void saveBook(Book book){
+		ObjectOutputStream out = null;
+		try{
+			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, book.getTitle() );
+			out = new ObjectOutputStream(Files.newOutputStream(path));
+			out.writeObject(book);
+		}catch(IOException e){
+			e.printStackTrace();
+
+			}finally{
+				if(out != null){
+					try{
+						out.close();
+					}catch(Exception e){}
+				}
+
+		}
+
 	}
 
 }

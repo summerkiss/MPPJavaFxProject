@@ -1,5 +1,8 @@
 package edu.mum.cs.mpp.libarysys.view;
 
+import edu.mum.cs.mpp.libarysys.business.LibraryMember;
+import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,12 +56,39 @@ public class LibraryMemberController {
 				||txtFirstName.getText()==null||txtFirstName.getText().equals("")){
 			lbInformation.setText("Last name and first name can not be empty!");			
 			lbInformation.visibleProperty().set(true);
+			return;
+		}
+		
+		
+		if(txtStreet.getText()==null||txtStreet.getText().equals("")
+				||txtCity.getText()==null||txtCity.getText().equals("")){
+			lbInformation.setText("Street and City can not be empty!");			
+			lbInformation.visibleProperty().set(true);
+			return;
 		}
 		
 		if(cbState.getValue()==null||cbState.getValue().equals("State")){
 			lbInformation.setText("State must be selected!");			
 			lbInformation.visibleProperty().set(true);
+			return;
 		}
+		
+		if(txtZip.getText()==null||txtZip.getText().equals("")){
+			lbInformation.setText("Zip code can not be empty!");			
+			lbInformation.visibleProperty().set(true);
+			return;
+		}
+		
+		if(txtPhoneNumber.getText()==null||txtPhoneNumber.getText().equals("")){
+			lbInformation.setText("Phone Number must be provided!");			
+			lbInformation.visibleProperty().set(true);
+			return;
+		}
+		
+		LibMemberDataAccess lda = new LibMemberDataAccessFacade();
+		lda.saveLibraryMember(new LibraryMember(this.txtLastName.getText(),
+				this.txtFirstName.getText(),"","","","",""));
+	
 	}
 	
 }
