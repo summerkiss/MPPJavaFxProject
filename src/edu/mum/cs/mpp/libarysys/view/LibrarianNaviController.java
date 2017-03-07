@@ -24,11 +24,18 @@ public class LibrarianNaviController implements Initializable {
 	private Button admistratorNavi;
 	@FXML
 	private TextField isbnText;
+	@FXML
+	private Button searchRecord;
+	
 	private Staff staff;
 	public void search(ActionEvent event) throws IOException {
-		System.out.println("this search");
 		startSearchResult("/edu/mum/cs/mpp/libarysys/view/BookInformation.fxml", event);
 	}
+
+	public void searchRecord(ActionEvent event) throws IOException {
+		startSearchRecord("/edu/mum/cs/mpp/libarysys/view/RecordInfo.fxml", event);
+	}
+
 	public void admistratorNavi(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml"));
 		Parent root = loader.load();
@@ -62,4 +69,15 @@ public class LibrarianNaviController implements Initializable {
 		app_stage.setScene(scene);
 		app_stage.show();
 	}
+	private void startSearchRecord(String url, ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
+//		librarianNaviController.initDate(staff);
+		app_stage.setScene(scene);
+		app_stage.show();
+	}
+	
 }

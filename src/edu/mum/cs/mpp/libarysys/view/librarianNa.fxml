@@ -32,7 +32,7 @@
             </Label>
          </children>
       </Pane>
-      <Button id="search" fx:id="searchID" layoutX="279.0" layoutY="151.0" mnemonicParsing="false" onAction="#search" prefHeight="39.0" prefWidth="88.0" text="search">
+      <Button id="search" fx:id="searchRecord" layoutX="279.0" layoutY="151.0" mnemonicParsing="false" onAction="#searchRecord" prefHeight="39.0" prefWidth="88.0" text="search">
          <font>
             <Font size="18.0" />
          </font>
