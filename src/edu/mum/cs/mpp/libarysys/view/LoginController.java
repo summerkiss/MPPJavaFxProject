@@ -33,21 +33,23 @@ public class LoginController {
 	private Staff staff;
 	
 	public void Login(ActionEvent event) throws IOException {
-//		DataAccess da = new DataAccessFacade();
-//		Staff staff = (Staff)da.readStaff(txtUsername.getText());
-//		if(staff==null){
-//			
-//		}if(staff.getPassword().equals(txtPwd)){
-//			lbInformation.setText("You are fool");
+		DataAccess da = new DataAccessFacade();
+		Application app = null;
 		
-		if (staff == null) {
-			return;
-		}
-		if (staff.isLibrarian()) {
-			startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
-		} else {
-			startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
-		}
+		Staff staff = (Staff)da.readStaff(txtUsername.getText());
+		if(staff==null||
+				!staff.getPassword().equals(txtPwd.getText())){
+//			System.out.println(staff.getId());
+//			System.out.println(staff.getPassword());
+//			System.out.println(txtPwd.getText());
+			lbInformation.setText("User name or password is not correct");			
+			lbInformation.visibleProperty().set(true);
+		}if(staff.getPassword().equals(txtPwd.getText())){
+			if (staff.isLibrarian()) {
+				startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
+			} else {
+				startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
+			}
 //		}
 		
 	}
