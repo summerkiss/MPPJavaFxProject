@@ -14,23 +14,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class BookInformationController implements Initializable {
-	
+public class CheckoutForID implements Initializable {
 	@FXML
-	private Button checkout;
-	
-	public void checkout(ActionEvent event) throws IOException {
-		startCheckoutProcedure("/edu/mum/cs/mpp/libarysys/view/CheckoutForID.fxml", event);
-	}
-
+	private Button searchID;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private void startCheckoutProcedure(String url, ActionEvent event) throws IOException {
+	public void search(ActionEvent event) throws IOException {
+		System.out.println("this in checkout.");
+	}
+	public void checkout(ActionEvent event) throws IOException {
+		System.out.println("this search");
+		startCheckoutCopyInfo("/edu/mum/cs/mpp/libarysys/view/CheckoutCopyInfo.fxml", event);
+	}	
+	public void startCheckoutCopyInfo(String url, ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
@@ -38,7 +38,7 @@ public class BookInformationController implements Initializable {
 //		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
 //		librarianNaviController.initDate(staff);
 		app_stage.setScene(scene);
-		app_stage.show();		
+		app_stage.show();
+		
 	}
-
 }
