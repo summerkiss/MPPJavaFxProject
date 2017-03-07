@@ -37,11 +37,9 @@ public class NewBookController {
 	public void newBook(ActionEvent event){
 		Book newBook = new Book(Integer.parseInt(bookID.getText()), ISBNnum.getText(), bookTitle.getText());
 		for(int n=0; n<Integer.parseInt(numOfCopies.getText()); n++){
-			LendableCopy copy = new LendableCopy();
-			copy.setCopyId(n);
-			copy.setPublication(newBook);
-			newBook.lendableCopyList.add(copy);
+			newBook.addCopy();
 			}
+
 		DataAccess da = new DataAccessFacade();
 		da.saveBook(newBook);
 	}
