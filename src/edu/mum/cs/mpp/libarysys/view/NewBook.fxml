@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.NewBookController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="500.0">
+         <top>
+            <FlowPane prefHeight="130.0" prefWidth="726.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="113.0" prefWidth="412.0" text="New Book">
+                     <font>
+                        <Font size="53.0" />
+                     </font>
+                     <FlowPane.margin>
+                        <Insets left="40.0" />
+                     </FlowPane.margin>
+                  </Label>
+               </children>
+            </FlowPane>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField id="pageTitle" maxWidth="-Infinity" promptText="Title">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField id="author" maxWidth="-Infinity" promptText="Author">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField id="bookID" maxWidth="-Infinity" promptText="Book ID">
+                     <VBox.margin>
+                        <Insets top="21.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField id="ISBNnum" maxHeight="-Infinity" maxWidth="-Infinity" promptText="ISBN Number">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField id="numOfCopies" maxWidth="-Infinity" prefHeight="25.0" prefWidth="117.0" promptText="Number of Copies">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#newBook" text="Add Book">
+                     <VBox.margin>
+                        <Insets left="15.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="100.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
