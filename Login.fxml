@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="edu.mum.cs.mpp.libarysys.view.LoginController">
+   <children>
+      <Button id="btnLogin" fx:id="btnLogin" layoutX="107.0" layoutY="217.0" mnemonicParsing="false" onAction="#Login" text="Login">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField id="txtUsername" fx:id="txtUsername" layoutX="31.0" layoutY="76.0" promptText="UserName">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <PasswordField id="txtPwd" fx:id="txtPwd" layoutX="31.0" layoutY="137.0" promptText="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </PasswordField>
+      <Label id="lbInfomation" fx:id="lbInformation" layoutX="24.0" layoutY="28.0" prefHeight="27.0" prefWidth="250.0" text="Label" textFill="#eb2f09" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
