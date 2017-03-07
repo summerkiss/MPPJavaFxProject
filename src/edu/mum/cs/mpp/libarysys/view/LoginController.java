@@ -2,6 +2,7 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 
+import application.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
@@ -34,9 +35,16 @@ public class LoginController {
 	
 	public void Login(ActionEvent event) throws IOException {
 		DataAccess da = new DataAccessFacade();
-		Application app = null;
-		
-		Staff staff = (Staff)da.readStaff(txtUsername.getText());
+//		Application app = null;
+
+//*********************below*************************************		
+		//Data storage function does not work yet, use the code below for test
+		//Staff staff = (Staff)da.readStaff(txtUsername.getText());
+		Staff s = new Staff("YuYang","123456",Authorization.BOTH);
+		//Staff s = new Staff("Yifeng","123456",Authorization.ADMIN);
+//		Staff s = new Staff("Rowe","123456",Authorization.LIBRARIAN);		
+		staff = s;
+//********************above***********************************		
 		if(staff==null||
 				!staff.getPassword().equals(txtPwd.getText())){
 //			System.out.println(staff.getId());
@@ -44,13 +52,15 @@ public class LoginController {
 //			System.out.println(txtPwd.getText());
 			lbInformation.setText("User name or password is not correct");			
 			lbInformation.visibleProperty().set(true);
-		}if(staff.getPassword().equals(txtPwd.getText())){
-			if (staff.isLibrarian()) {
+		} else if(staff.getPassword().equals(txtPwd.getText())){
+			this.staff = staff;
+			if (staff.getAu() == Authorization.BOTH ||
+				staff.getAu() == Authorization.LIBRARIAN) {
 				startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
 			} else {
 				startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
 			}
-//		}
+		}
 		
 	}
 	private void startForLibrarian(String url, ActionEvent event) throws IOException {

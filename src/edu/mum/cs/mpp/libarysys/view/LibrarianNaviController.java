@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,12 +42,13 @@ public class LibrarianNaviController implements Initializable {
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		admistratorNavi.setDisable(false);
+		admistratorNavi.setDisable(true);
 	}
 	public void initDate(Staff staff) {
 		this.staff = staff;
-		if (staff.isAdministrator()) {
-			admistratorNavi.setDisable(true);
+		if (staff.getAu() == Authorization.ADMIN ||
+			staff.getAu() == Authorization.BOTH) {
+			admistratorNavi.setDisable(false);
 		}
 		
 	}

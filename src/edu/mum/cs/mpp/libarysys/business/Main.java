@@ -19,7 +19,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Staff s1 = new Staff("YuYang","123456",Authorization.BOTH);
-		Staff s2 = new Staff("YiHong","123456",Authorization.ADMIN);
+		Staff s2 = new Staff("Yifeng","123456",Authorization.ADMIN);
 		Staff s3 = new Staff("Rowe","123456",Authorization.LIBRARIAN);
 //		
 		DataAccess da = new DataAccessFacade();
