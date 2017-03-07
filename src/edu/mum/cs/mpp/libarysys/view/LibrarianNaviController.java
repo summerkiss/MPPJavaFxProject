@@ -27,7 +27,7 @@ public class LibrarianNaviController implements Initializable {
 	private Staff staff;
 	public void search(ActionEvent event) throws IOException {
 		System.out.println("this search");
-		
+		startSearchResult("/edu/mum/cs/mpp/libarysys/view/BookInformation.fxml", event);
 	}
 	public void admistratorNavi(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml"));
@@ -51,5 +51,15 @@ public class LibrarianNaviController implements Initializable {
 			admistratorNavi.setDisable(false);
 		}
 		
+	}
+	private void startSearchResult(String url, ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
+//		librarianNaviController.initDate(staff);
+		app_stage.setScene(scene);
+		app_stage.show();
 	}
 }
