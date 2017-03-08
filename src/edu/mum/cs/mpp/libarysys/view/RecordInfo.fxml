@@ -8,19 +8,23 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.RecordInfoController">
    <children>
-      <Pane prefHeight="466.0" prefWidth="794.0">
+      <Pane prefHeight="529.0" prefWidth="794.0">
          <children>
             <Label layoutX="140.0" layoutY="35.0" text="id">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView layoutX="8.0" layoutY="85.0" prefHeight="376.0" prefWidth="781.0">
+            <TableView fx:id="tableID" layoutX="8.0" layoutY="85.0" prefHeight="369.0" prefWidth="781.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn prefWidth="75.0" />
               </columns>
             </TableView>
+            <Button layoutX="4.0" layoutY="459.0" mnemonicParsing="false" text="Button">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Label layoutX="280.0" text="Library System">
