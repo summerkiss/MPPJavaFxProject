@@ -15,12 +15,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="tableID" layoutX="8.0" layoutY="85.0" prefHeight="369.0" prefWidth="781.0">
-              <columns>
-                <TableColumn prefWidth="75.0" />
-              </columns>
-            </TableView>
-            <Button layoutX="4.0" layoutY="459.0" mnemonicParsing="false" text="Button">
+            <TableView fx:id="tableID" layoutX="8.0" layoutY="85.0" prefHeight="380.0" prefWidth="781.0" />
+            <Button layoutX="674.0" layoutY="472.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="110.0" text="Back">
                <font>
                   <Font size="24.0" />
                </font>

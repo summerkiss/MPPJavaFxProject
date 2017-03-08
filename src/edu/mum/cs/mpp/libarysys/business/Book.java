@@ -34,4 +34,8 @@ public class Book extends Publication implements Serializable {
 		lendableCopyList.add(copy);
 		totalCopyCount ++;
 	}
+	
+	public String getIsbn() {
+		return isbn;
+	}
 }
