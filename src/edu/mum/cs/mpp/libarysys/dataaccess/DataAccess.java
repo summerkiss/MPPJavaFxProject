@@ -1,5 +1,6 @@
 package edu.mum.cs.mpp.libarysys.dataaccess;
 
+import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 
@@ -8,4 +9,5 @@ public interface DataAccess {
 	public LibraryMember readLibraryMember(String name);
 	public void saveStaff(Staff staff);
 	public Staff readStaff(String staffId);
+	public void saveBook(Book book);
 }
