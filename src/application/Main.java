@@ -14,8 +14,8 @@ public class Main extends Application {
 		try {
 			//BorderPane root = new BorderPane();
 			Parent root = FXMLLoader.load(getClass().getResource(
-					 "/edu/mum/cs/mpp/libarysys/view/Login.fxml"));
-			Scene scene = new Scene(root,400,400);
+					 "/edu/mum/cs/mpp/libarysys/view/LibraryMemberSearch.fxml"));
+			Scene scene = new Scene(root,600,450);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

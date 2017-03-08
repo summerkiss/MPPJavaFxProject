@@ -19,7 +19,7 @@ public class LibMemberDataAccessFacade implements LibMemberDataAccess {
 	public static final String DATA_MEMBER = "member";
 
 	@Override
-	public void saveLibraryMember(LibraryMember member) {
+	public boolean saveLibraryMember(LibraryMember member) {
 		ObjectOutputStream out = null;
 		try {
 			if(member!=null&&!member.getId().equals("")){
@@ -29,7 +29,7 @@ public class LibMemberDataAccessFacade implements LibMemberDataAccess {
 				out = new ObjectOutputStream(Files.newOutputStream(path));
 				out.writeObject(member);			
 			}
-			
+						
 		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -39,6 +39,7 @@ public class LibMemberDataAccessFacade implements LibMemberDataAccess {
 				} catch(Exception e) {}
 			}
 		}
+		return this.isLibraryMemberExist(member.getId());
 	}
 
 	@Override
@@ -80,6 +81,29 @@ public class LibMemberDataAccessFacade implements LibMemberDataAccess {
 			}
 		}
 		return mList;
+	}
+	
+	private boolean isLibraryMemberExist(String id){
+		File staffFolder = new File(OUTPUT_DIR.concat("/").concat(DATA_MEMBER));		
+		File sFiles[] = staffFolder.listFiles();
+		for(File f:sFiles){
+			if(f.getName().indexOf(id)==0){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteLibraryMember(String id) {
+		File staffFolder = new File(OUTPUT_DIR.concat("/").concat(DATA_MEMBER));		
+		File sFiles[] = staffFolder.listFiles();
+		for(File f: sFiles){
+			if(f.getName().indexOf(id)==0){
+				return f.delete();
+			}			
+		}
+		return false;
 	}
 
 }

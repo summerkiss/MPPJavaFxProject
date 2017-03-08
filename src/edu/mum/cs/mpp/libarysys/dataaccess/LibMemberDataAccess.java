@@ -5,7 +5,9 @@ import java.util.List;
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 
 public interface LibMemberDataAccess {
-	public void saveLibraryMember(LibraryMember member);
+	public boolean saveLibraryMember(LibraryMember member);
 	public LibraryMember readLibraryMember(String id);
 	public List<LibraryMember> readLibraryMember();
+	public boolean deleteLibraryMember(String id);
+	//public boolean isLibraryMemberExist(String id);
 }

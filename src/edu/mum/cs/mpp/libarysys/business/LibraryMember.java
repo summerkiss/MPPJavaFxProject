@@ -152,7 +152,7 @@ public class LibraryMember implements Serializable {
 
 	 private static String getRandomId(){ 
 	         String s = UUID.randomUUID().toString(); 
-	         return s.replaceAll("-", "");  
+	         return s.replaceAll("-", "").substring(0,5);  
 	     } 
 
 	
