@@ -45,18 +45,18 @@ public class LoginController {
 //		Staff s = new Staff("Rowe","123456",Authorization.LIBRARIAN);		
 		staff = s;
 //********************above***********************************		
-//		if(staff==null||
-//				!staff.getPassword().equals(txtPwd.getText())){
-//			lbInformation.setText("User name or password is not correct");			
-//			lbInformation.visibleProperty().set(true);
-//		} else if(staff.getPassword().equals(txtPwd.getText())){
-//			this.staff = staff;
+		if(staff==null||
+				!staff.getPassword().equals(txtPwd.getText())){
+			lbInformation.setText("User name or password is not correct");			
+			lbInformation.visibleProperty().set(true);
+		} else if(staff.getPassword().equals(txtPwd.getText())){
+			this.staff = staff;
 			if (staff.getAu() == Authorization.BOTH ||
 				staff.getAu() == Authorization.LIBRARIAN) {
 				startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
-//			} else {
-//				startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
-//			}
+			} else {
+				startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
+			}
 		}
 		
 	}
