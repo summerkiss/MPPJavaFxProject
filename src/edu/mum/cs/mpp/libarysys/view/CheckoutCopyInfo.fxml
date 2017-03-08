@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="447.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.CheckoutForID">
+   <children>
+      <Pane layoutY="-6.0" prefHeight="124.0" prefWidth="376.0">
+         <children>
+            <Label layoutX="103.0" layoutY="91.0" text="The book as below is checking out">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label layoutX="70.0" layoutY="2.0" text="Library System">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="125.0" layoutY="49.0" text="For Librarian">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="14.0" layoutY="127.0" text="Member ID:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="dueDate" layoutX="130.0" layoutY="341.0" text="date">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="339.0" prefHeight="39.0" prefWidth="112.0" text="Due Date:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="isbn" layoutX="85.0" layoutY="160.0" text="isbn">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="155.0" prefHeight="45.0" prefWidth="86.0" text="ISBN:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="244.0" text="Title:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="title" layoutX="78.0" layoutY="245.0" text="title">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="291.0" text="Authors:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="authors" layoutX="118.0" layoutY="287.0" prefHeight="45.0" prefWidth="324.0" text="authors">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="checkout" layoutX="138.0" layoutY="382.0" mnemonicParsing="false" text="Checkout">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="16.0" layoutY="195.0" prefHeight="45.0" prefWidth="99.0" text="Copy ID:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="isbn1" layoutX="118.0" layoutY="200.0" text="id">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="isbn2" layoutX="146.0" layoutY="127.0" text="id">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

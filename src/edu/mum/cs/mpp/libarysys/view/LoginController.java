@@ -47,9 +47,6 @@ public class LoginController {
 //********************above***********************************		
 		if(staff==null||
 				!staff.getPassword().equals(txtPwd.getText())){
-//			System.out.println(staff.getId());
-//			System.out.println(staff.getPassword());
-//			System.out.println(txtPwd.getText());
 			lbInformation.setText("User name or password is not correct");			
 			lbInformation.visibleProperty().set(true);
 		} else if(staff.getPassword().equals(txtPwd.getText())){
