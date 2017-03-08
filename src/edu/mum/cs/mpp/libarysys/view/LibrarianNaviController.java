@@ -42,10 +42,10 @@ public class LibrarianNaviController implements Initializable {
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		AdministratorNaviController administratorNaviController = loader.<AdministratorNaviController>getController();
-		administratorNaviController.initDate(staff);		
+		administratorNaviController.initDate(staff);
 		app_stage.setScene(scene);
-		app_stage.show();	
-		
+		app_stage.show();
+
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -57,7 +57,7 @@ public class LibrarianNaviController implements Initializable {
 			staff.getAu() == Authorization.BOTH) {
 			admistratorNavi.setDisable(false);
 		}
-		
+
 	}
 	private void startSearchResult(String url, ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));

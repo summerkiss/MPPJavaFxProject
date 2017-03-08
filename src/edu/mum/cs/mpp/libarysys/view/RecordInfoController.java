@@ -2,6 +2,7 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import edu.mum.cs.mpp.libarysys.business.Book;
@@ -66,7 +67,7 @@ public class RecordInfoController implements Initializable {
 	
 	public ObservableList<CheckoutRecordEntry> getEntry() {
 		ObservableList<CheckoutRecordEntry> checkoutRecordEntry = FXCollections.observableArrayList();
-		Book book = new Book(1, "123-34522-111235", "caption");
+		Book book = new Book(1, "123-34522-111235", "caption", Arrays.asList("Yifeng Zhong", "Yang Yu", "Matthew"));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
