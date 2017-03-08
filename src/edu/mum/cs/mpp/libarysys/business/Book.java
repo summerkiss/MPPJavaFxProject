@@ -30,7 +30,7 @@ public class Book extends Publication implements Serializable {
 	}
 
 	public void addCopy(){
-		LendableCopy copy = new LendableCopy();
+		LendableCopy copy = new LendableCopy(this,3);
 		copy.setPublication(this);
 		copy.setCopyId(totalCopyCount);
 		lendableCopyList.add(copy);
