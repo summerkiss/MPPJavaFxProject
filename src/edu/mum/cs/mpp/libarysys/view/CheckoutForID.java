@@ -39,6 +39,7 @@ public class CheckoutForID implements Initializable {
 	
 	private Book book;
 	private Staff staff;
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -70,8 +71,8 @@ public class CheckoutForID implements Initializable {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
-//		librarianNaviController.initDate(staff);
+		CheckoutCopyInfoControl checkoutCopyInfoControl = loader.<CheckoutCopyInfoControl>getController();
+		checkoutCopyInfoControl.initDate(book, "123456");
 		app_stage.setScene(scene);
 		app_stage.show();
 		

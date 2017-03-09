@@ -2,11 +2,15 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Book;
+import edu.mum.cs.mpp.libarysys.business.LendableCopy;
+import edu.mum.cs.mpp.libarysys.business.Publication;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,14 +60,21 @@ public class BookInformationController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		Book book = new Book(123,"123-456-765", "yes",Arrays.asList("abc","cds","sig","odi"),true);
+		//TODO *************below for test************
+		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>(); 
+		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
+		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
+		//************above for test******************
+		Book book = new Book(123,"123-456-765", "yes",Arrays.asList("abc","cds","sig","odi"),true,lendablecopyList);
 		this.book = book;
 		isbn.setText(book.getIsbn());
 		title.setText(book.getTitle());
 		if(book.isAvailable()) {
 			number.setText("Available");
+			checkout.setDisable(false);
 		} else {
 			number.setText("Not Available");
+			checkout.setDisable(true);
 		}
 		StringBuilder strbld = new StringBuilder();
 		for(String author:book.getAuthorList()) {

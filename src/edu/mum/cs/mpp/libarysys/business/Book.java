@@ -13,14 +13,17 @@ public class Book extends Publication implements Serializable {
 	private List<String> authorList;
 
 
-	public Book(int id, String isbn, String title, List<String> authors, boolean available) {
+	public Book(int id, String isbn, String title, List<String> authors, boolean available, List<LendableCopy> lendableCopyList) {
 		super(title);
 		this.id = id;
 		this.isbn = isbn;
-		lendableCopyList = new ArrayList<LendableCopy>();
+		this.lendableCopyList = lendableCopyList;
 		totalCopyCount = 0;
 		authorList = authors;
 		this.available = available;
+	}
+	public List<LendableCopy> getLendableCopyList() {
+		return lendableCopyList;
 	}
 	public List<String> getAuthorList() {
 		return authorList;
@@ -39,6 +42,15 @@ public class Book extends Publication implements Serializable {
 		copy.setCopyId(totalCopyCount);
 		lendableCopyList.add(copy);
 		totalCopyCount ++;
+	}
+	
+	public void decreaseLendableCopy(LendableCopy lendableCopy) {
+		int index = lendableCopyList.indexOf(lendableCopy);
+		lendableCopyList.remove(index);
+		if (lendableCopyList.isEmpty()) {
+			available = false;
+		}
+		
 	}
 	
 	public String getIsbn() {
