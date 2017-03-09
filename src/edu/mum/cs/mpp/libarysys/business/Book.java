@@ -8,9 +8,12 @@ public class Book extends Publication implements Serializable {
 	private int id;
 	private String isbn;
 	private boolean available;
+//	public Book(int id, String isbn, String title) {
 	private List<LendableCopy> lendableCopyList;
 	private int totalCopyCount;
 	private List<String> authorList;
+
+
 
 
 	public Book(int id, String isbn, String title, List<String> authors, boolean available, List<LendableCopy> lendableCopyList) {

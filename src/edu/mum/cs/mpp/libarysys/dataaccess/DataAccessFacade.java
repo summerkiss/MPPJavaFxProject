@@ -127,6 +127,7 @@ public class DataAccessFacade implements DataAccess {
 	public void saveBook(Book book){
 		ObjectOutputStream out = null;
 		try{
+		
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR.concat("/").concat(DATA_BOOKS), book.getTitle() );
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(book);
