@@ -10,4 +10,5 @@ public interface DataAccess {
 	public void saveStaff(Staff staff);
 	public Staff readStaff(String staffId);
 	public void saveBook(Book book);
+	public Book readBook(String isbn);
 }

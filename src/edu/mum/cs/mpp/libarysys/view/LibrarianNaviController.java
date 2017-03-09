@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LibrarianNaviController implements Initializable {
@@ -64,8 +65,8 @@ public class LibrarianNaviController implements Initializable {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
-//		librarianNaviController.initDate(staff);
+		BookInformationController bookInformationController = loader.<BookInformationController>getController();
+		bookInformationController.initDate(staff);
 		app_stage.setScene(scene);
 		app_stage.show();
 	}

@@ -2,8 +2,12 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import application.Authorization;
+import edu.mum.cs.mpp.libarysys.business.Book;
+import edu.mum.cs.mpp.libarysys.business.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class BookInformationController implements Initializable {
@@ -19,15 +24,57 @@ public class BookInformationController implements Initializable {
 	@FXML
 	private Button checkout;
 	
+	@FXML
+	private Label isbn;
+	@FXML
+	private Label title;
+	@FXML
+	private Label authors;
+	@FXML
+	private Label number;
+	
+	private Staff staff;
+	
+	private Book book;
+	
 	public void checkout(ActionEvent event) throws IOException {
 		startCheckoutProcedure("/edu/mum/cs/mpp/libarysys/view/CheckoutForID.fxml", event);
 	}
 
+	public void back(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/LibrarianNa.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
+		librarianNaviController.initDate(staff);
+		app_stage.setScene(scene);
+		app_stage.show();		
+		
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		Book book = new Book(123,"123-456-765", "yes",Arrays.asList("abc","cds","sig","odi"),true);
+		this.book = book;
+		isbn.setText(book.getIsbn());
+		title.setText(book.getTitle());
+		if(book.isAvailable()) {
+			number.setText("Available");
+		} else {
+			number.setText("Not Available");
+		}
+		StringBuilder strbld = new StringBuilder();
+		for(String author:book.getAuthorList()) {
+			strbld.append(author);
+			strbld.append(";");
+		}
+		authors.setText(strbld.toString());
 		
+	}
+	public void initDate(Staff staff) {
+		this.staff = staff;
 	}
 	
 	private void startCheckoutProcedure(String url, ActionEvent event) throws IOException {
@@ -35,8 +82,8 @@ public class BookInformationController implements Initializable {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
-//		librarianNaviController.initDate(staff);
+		CheckoutForID checkoutForID = loader.<CheckoutForID>getController();
+		checkoutForID.initDate(book);
 		app_stage.setScene(scene);
 		app_stage.show();		
 	}

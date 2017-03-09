@@ -68,7 +68,8 @@ public class LoginController {
 		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
 		librarianNaviController.initDate(staff);
 		app_stage.setScene(scene);
-		app_stage.show();			
+		app_stage.show();	
+	
 		
 	}
 	private void startForAdministrator(String url, ActionEvent event) throws IOException {

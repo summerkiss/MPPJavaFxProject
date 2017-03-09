@@ -67,7 +67,7 @@ public class RecordInfoController implements Initializable {
 	
 	public ObservableList<CheckoutRecordEntry> getEntry() {
 		ObservableList<CheckoutRecordEntry> checkoutRecordEntry = FXCollections.observableArrayList();
-		Book book = new Book(1, "123-34522-111235", "caption", Arrays.asList("Yifeng Zhong", "Yang Yu", "Matthew"));
+		Book book = new Book(1, "123-34522-111235", "caption", Arrays.asList("Yifeng Zhong", "Yang Yu", "Matthew"),true);
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));

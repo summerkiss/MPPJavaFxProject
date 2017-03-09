@@ -60,7 +60,7 @@ public class NewBookController {
 			}
 		}
 
-		Book newBook = new Book(Integer.parseInt(bookID.getText()), ISBNnum.getText(), bookTitle.getText(), authors);
+		Book newBook = new Book(Integer.parseInt(bookID.getText()), ISBNnum.getText(), bookTitle.getText(), authors,true);
 
 		for(int n=0; n<Integer.parseInt(numOfCopies.getText()); n++){
 			newBook.addCopy();

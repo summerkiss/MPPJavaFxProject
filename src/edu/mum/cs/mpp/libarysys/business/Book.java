@@ -13,16 +13,20 @@ public class Book extends Publication implements Serializable {
 	private List<String> authorList;
 
 
-	public Book(int id, String isbn, String title, List<String> authors) {
+	public Book(int id, String isbn, String title, List<String> authors, boolean available) {
 		super(title);
 		this.id = id;
 		this.isbn = isbn;
 		lendableCopyList = new ArrayList<LendableCopy>();
 		totalCopyCount = 0;
 		authorList = authors;
+		this.available = available;
 	}
-	public void isAvailable(boolean b) {
-		available = b;
+	public List<String> getAuthorList() {
+		return authorList;
+	}
+	public boolean isAvailable() {
+		return available;
 	}
 	@Override
 	public String toString() {
