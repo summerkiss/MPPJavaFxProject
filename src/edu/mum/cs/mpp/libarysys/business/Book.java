@@ -15,8 +15,8 @@ public class Book extends Publication implements Serializable {
 
 
 	public Book(int id, String isbn, String title, List<String> authors) {
-	public List<LendableCopy> lendableCopyList;
-	public Book(int id, String isbn, String title) {
+
+
 		super(title);
 		this.id = id;
 		this.isbn = isbn;
