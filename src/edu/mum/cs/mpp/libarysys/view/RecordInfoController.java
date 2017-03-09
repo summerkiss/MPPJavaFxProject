@@ -2,13 +2,16 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.CheckoutRecord;
 import edu.mum.cs.mpp.libarysys.business.CheckoutRecordEntry;
 import edu.mum.cs.mpp.libarysys.business.LendableCopy;
+import edu.mum.cs.mpp.libarysys.business.Publication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,6 +28,9 @@ public class RecordInfoController implements Initializable {
 
 	@FXML
 	private TableColumn<CheckoutRecordEntry, Integer> memberId;
+	
+	@FXML
+	private TableColumn<CheckoutRecordEntry, String> isbnColumn = new TableColumn("ISBN");
 
 	@FXML
 	private TableColumn<CheckoutRecordEntry, Integer> copyIdColumn = new TableColumn("CopyId");
@@ -41,6 +47,9 @@ public class RecordInfoController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		isbnColumn.setMinWidth(20);
+		isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+		
 		copyIdColumn.setMinWidth(20);
 		copyIdColumn.setCellValueFactory(new PropertyValueFactory<>("copyId"));
 		
@@ -55,13 +64,19 @@ public class RecordInfoController implements Initializable {
 		
 		
 		tableID.setItems(getEntry());
-		tableID.getColumns().addAll(copyIdColumn, titleColumn, checkoutDateColumn, dueDateColumn);
+		tableID.getColumns().addAll(isbnColumn, copyIdColumn, titleColumn, checkoutDateColumn, dueDateColumn);
 		
 	}
 	
 	public ObservableList<CheckoutRecordEntry> getEntry() {
 		ObservableList<CheckoutRecordEntry> checkoutRecordEntry = FXCollections.observableArrayList();
-		Book book = new Book(1, "abc123", "caption", Arrays.asList("Yifeng Zhong", "Yang Yu", "Matthew"));
+		//TODO *************below for test************
+		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>(); 
+		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
+		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
+		//************above for test******************
+				
+		Book book = new Book(1, "123-34522-111235", "caption", Arrays.asList("Yifeng Zhong", "Yang Yu", "Matthew"),true,lendablecopyList);
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
 		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));

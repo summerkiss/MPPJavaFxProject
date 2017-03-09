@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="447.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.CheckoutForID">
+<AnchorPane prefHeight="447.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.CheckoutCopyInfoControl">
    <children>
       <Pane layoutY="-6.0" prefHeight="124.0" prefWidth="376.0">
          <children>
@@ -71,7 +71,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="checkout" layoutX="138.0" layoutY="382.0" mnemonicParsing="false" text="Checkout">
+      <Button fx:id="checkout" layoutX="138.0" layoutY="382.0" mnemonicParsing="false" onAction="#onCheckout" text="Checkout">
          <font>
             <Font size="24.0" />
          </font>
@@ -81,12 +81,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="isbn1" layoutX="118.0" layoutY="200.0" text="id">
+      <Label fx:id="copyId" layoutX="118.0" layoutY="200.0" text="copyId">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="isbn2" layoutX="146.0" layoutY="127.0" text="id">
+      <Label fx:id="id" layoutX="146.0" layoutY="127.0" text="id">
          <font>
             <Font size="24.0" />
          </font>

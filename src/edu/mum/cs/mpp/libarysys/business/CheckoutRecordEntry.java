@@ -23,6 +23,9 @@ public class CheckoutRecordEntry implements Serializable {
 	        ", dueDate: " + dueDate.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN)) +
 	        ", publication: " + copy + "]";
 	}
+	public String getIsbn() {
+		return book.getIsbn();
+	}
 	public Integer getCopyId() {
 		return copy.getCopyId();
 	}

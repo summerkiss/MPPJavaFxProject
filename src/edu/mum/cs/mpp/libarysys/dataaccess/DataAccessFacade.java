@@ -105,12 +105,30 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return member;
 	}
+	public Book readBook(String isbn) {
+		ObjectInputStream in = null;
+		Book book = null;
+		try {
+			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, isbn);
+			in = new ObjectInputStream(Files.newInputStream(path));
+			book = (Book)in.readObject();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(in != null) {
+				try {
+					in.close();
+				} catch(Exception e) {}
+			}
+		}
+		return book;
+	}
 
 	public void saveBook(Book book){
 		ObjectOutputStream out = null;
 		try{
-			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR.concat("/").concat(DATA_STAFF), book.getTitle() );
-			
+		
+			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR.concat("/").concat(DATA_BOOKS), book.getTitle() );
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(book);
 		}catch(IOException e){
@@ -126,5 +144,6 @@ public class DataAccessFacade implements DataAccess {
 		}
 
 	}
+	
 
 }

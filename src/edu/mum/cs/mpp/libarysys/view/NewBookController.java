@@ -3,6 +3,8 @@ package edu.mum.cs.mpp.libarysys.view;
 import java.util.ArrayList;
 import java.util.List;
 import edu.mum.cs.mpp.libarysys.business.Book;
+import edu.mum.cs.mpp.libarysys.business.LendableCopy;
+import edu.mum.cs.mpp.libarysys.business.Publication;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
 import javafx.event.ActionEvent;
@@ -59,8 +61,12 @@ public class NewBookController {
 				wrongInput.setText("Invalid ISBN number");
 			}
 		}
-
-		Book newBook = new Book(Integer.parseInt(bookID.getText()), ISBNnum.getText(), bookTitle.getText(), authors);
+		//TODO *************below for test************
+		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>(); 
+		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
+		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
+		//************above for test******************
+		Book newBook = new Book(Integer.parseInt(bookID.getText()), ISBNnum.getText(), bookTitle.getText(), authors,true,lendablecopyList);
 
 		for(int n=0; n<Integer.parseInt(numOfCopies.getText()); n++){
 			newBook.addCopy();

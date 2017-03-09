@@ -8,9 +8,9 @@
 
 <AnchorPane prefHeight="447.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.CheckoutForID">
    <children>
-      <Pane layoutY="-6.0" prefHeight="194.0" prefWidth="376.0">
+      <Pane layoutY="-6.0" prefHeight="68.0" prefWidth="442.0">
          <children>
-            <Label layoutX="14.0" layoutY="91.0" text="which ID will checkout ">
+            <Label layoutX="14.0" layoutY="91.0" text="Input member ID to checkout ">
                <font>
                   <Font size="13.0" />
                </font></Label>
@@ -26,11 +26,6 @@
             </Label>
          </children>
       </Pane>
-      <Button id="search" fx:id="searchID" layoutX="279.0" layoutY="126.0" mnemonicParsing="false" onAction="#search" prefHeight="39.0" prefWidth="88.0" text="search">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <TextField fx:id="idText" layoutX="47.0" layoutY="117.0" prefHeight="45.0" prefWidth="214.0">
          <font>
             <Font size="24.0" />
@@ -85,5 +80,10 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Label fx:id="errorInfo" layoutX="50.0" layoutY="171.0" prefHeight="19.0" prefWidth="214.0" text="No id was found." textFill="#f80b0b" visible="false">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
