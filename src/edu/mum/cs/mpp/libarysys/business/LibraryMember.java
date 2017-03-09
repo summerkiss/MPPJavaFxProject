@@ -37,7 +37,8 @@ public class LibraryMember implements Serializable {
 	private String phone;
 	
 	public void checkout(LendableCopy copy, LocalDate checkoutDate, LocalDate dueDate) {
-		CheckoutRecordEntry entry = new CheckoutRecordEntry(copy, checkoutDate, dueDate);
+		//TODO: need to fix, because book is null
+		CheckoutRecordEntry entry = new CheckoutRecordEntry(copy, checkoutDate, dueDate, null); 
 		record.addEntry(entry);
 		
 	}

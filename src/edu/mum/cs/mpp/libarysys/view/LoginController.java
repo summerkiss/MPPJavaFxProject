@@ -2,6 +2,7 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 
+
 import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
@@ -47,9 +48,6 @@ public class LoginController {
 //********************above***********************************		
 		if(staff==null||
 				!staff.getPassword().equals(txtPwd.getText())){
-//			System.out.println(staff.getId());
-//			System.out.println(staff.getPassword());
-//			System.out.println(txtPwd.getText());
 			lbInformation.setText("User name or password is not correct");			
 			lbInformation.visibleProperty().set(true);
 		} else if(staff.getPassword().equals(txtPwd.getText())){

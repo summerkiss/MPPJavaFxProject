@@ -20,6 +20,7 @@ public class DataAccessFacade implements DataAccess {
 			+ "/src/edu/mum/cs/mpp/libarysys/dataaccess/storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 	public static final String DATA_STAFF = "staff";
+	public static final String DATA_BOOKS = "Books";
 
 
 	public void saveStaff(Staff staff) {
@@ -108,7 +109,8 @@ public class DataAccessFacade implements DataAccess {
 	public void saveBook(Book book){
 		ObjectOutputStream out = null;
 		try{
-			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, book.getTitle() );
+			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR.concat("/").concat(DATA_STAFF), book.getTitle() );
+			
 			out = new ObjectOutputStream(Files.newOutputStream(path));
 			out.writeObject(book);
 		}catch(IOException e){
