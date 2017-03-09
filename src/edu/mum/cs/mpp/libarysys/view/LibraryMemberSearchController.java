@@ -50,9 +50,6 @@ public class LibraryMemberSearchController {
 	@FXML
 	private Button btnSearch;
 	
-	@FXML
-	private Button btnBack;
-	
 	
 	@FXML
 	private TableView<LibraryMember> tbMember;

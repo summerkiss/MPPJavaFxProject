@@ -137,7 +137,8 @@ public class LibraryMemberController {
 			member.setState(cbState.getValue());
 			member.setZip(txtZip.getText());
 			member.setPhone(txtPhoneNumber.getText());
-			if(lda.saveLibraryMember(member)){
+			//delete the old version first
+			if(lda.deleteLibraryMember(member.getId())&&lda.saveLibraryMember(member)){
 				this.lbInformation.setText("The user :"+this.txtLastName.getText()+" "+ this.txtFirstName.getText()+" saved!");
 				this.lbInformation.setTextFill( Paint.valueOf("Green"));
 			}
@@ -163,8 +164,6 @@ public class LibraryMemberController {
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Scene scene = new Scene(root,600,450);
-		//Hashtable iniData = new Hashtable();
-		//iniData.put("edit", member);
 		LibraryMemberSearchController libraryMemberSearchController = loader.<LibraryMemberSearchController>getController();
 		stage.setScene(scene);
 		stage.show();
