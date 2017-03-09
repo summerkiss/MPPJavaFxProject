@@ -1,5 +1,7 @@
 package application;
 
+import com.aquafx_project.AquaFx;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
@@ -16,10 +18,11 @@ public class Main extends Application {
 			//BorderPane root = new BorderPane();
 			Parent root = FXMLLoader.load(getClass().getResource(
 					 "/edu/mum/cs/mpp/libarysys/view/Login.fxml"));
-			Scene scene = new Scene(root,600,550);
+			Scene scene = new Scene(root,400,300);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			AquaFx.style();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

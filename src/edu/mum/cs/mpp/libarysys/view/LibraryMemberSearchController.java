@@ -2,7 +2,9 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.util.Hashtable;
 
+import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
+import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.collections.FXCollections;
@@ -55,8 +57,9 @@ public class LibraryMemberSearchController {
 	private TableView<LibraryMember> tbMember;
 	private Hashtable iniData;
 	
-	LibMemberDataAccess lda = new LibMemberDataAccessFacade();
-	ObservableList<LibraryMember> data;
+	private LibMemberDataAccess lda = new LibMemberDataAccessFacade();
+	private ObservableList<LibraryMember> data;
+	private Staff staff;
 	
 	
 	@FXML
@@ -96,7 +99,21 @@ public class LibraryMemberSearchController {
 		this.iniData = iniData;
 		
 		if(iniData!=null&&iniData.size()>0){
-			iniData.get("");
+			staff = (Staff)iniData.get("Staff");
+			if(staff == null){
+				return;
+			}else{
+				if(staff.getAu().equals(Authorization.ADMIN)){
+					this.btnCheckOut.visibleProperty().setValue(false);
+					this.btnRecord.visibleProperty().setValue(false);
+				}
+				if(staff.getAu().equals(Authorization.LIBRARIAN)){
+					this.btnAdd.visibleProperty().setValue(false);
+					this.btnEdit.visibleProperty().setValue(false);
+					this.btnDelete.visibleProperty().setValue(false);
+				}
+	
+			}
 			
 		}else{
 			System.out.println("member is null");
