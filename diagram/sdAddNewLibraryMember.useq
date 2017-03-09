@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.14" icons="true">  
+  <object id="1" language="java" name="edu.mum.cs.mpp.libarysys.view.LibraryMemberSearchController" 
+    project="mpplibrarysystem" 
+    file="/mpplibrarysystem/src/edu/mum/cs/mpp/libarysys/view/LibraryMemberSearchController.java" binary="false" 
+    label="libraryMemberSearchController" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="237" y="0"/>    
+    <execution id="2">      
+      <position height="105" width="240" x="5" y="125"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccess" 
+    project="mpplibrarysystem" file="/mpplibrarysystem/src/edu/mum/cs/mpp/libarysys/dataaccess/LibMemberDataAccess.java" 
+    binary="false" label="libMemberDataAccess" type="interface" autoSize="true">    
+    <position height="-1" width="-1" x="257" y="0"/>    
+    <execution id="4">      
+      <position height="63" width="184" x="249" y="146"/>    
+    </execution>  
+  </object>  
+  <object id="8" language="java" name="edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade" 
+    project="mpplibrarysystem" 
+    file="/mpplibrarysystem/src/edu/mum/cs/mpp/libarysys/dataaccess/LibMemberDataAccessFacade.java" binary="false" 
+    label="libMemberDataAccessFacade" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="463" y="0"/>    
+    <execution id="7">      
+      <position height="21" width="230" x="437" y="167"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="saveLibraryMember(edu.mum.cs.mpp.libarysys.business.LibraryMember):boolean" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="saveLibraryMember(edu.mum.cs.mpp.libarysys.business.LibraryMember):boolean" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>
+</sequence-diagram>

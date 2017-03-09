@@ -2,9 +2,11 @@ package edu.mum.cs.mpp.libarysys.business;
 
 import java.io.Serializable;
 
-import application.Authorization;
-
 public class Staff implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String password;
 	private Authorization au;
