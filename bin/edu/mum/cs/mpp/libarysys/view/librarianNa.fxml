@@ -8,18 +8,18 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.LibrarianNaviController">
    <children>
-      <Pane prefHeight="291.0" prefWidth="376.0">
+      <Pane prefHeight="317.0" prefWidth="376.0">
          <children>
             <Label layoutX="14.0" layoutY="91.0" text="ISBN:">
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <TextField fx:id="isbnText" layoutX="84.0" layoutY="81.0" prefHeight="53.0" prefWidth="181.0" />
+            <TextField fx:id="isbnText" layoutX="82.0" layoutY="93.0" prefHeight="30.0" prefWidth="181.0" />
             <Button id="search" fx:id="search" layoutX="279.0" layoutY="87.0" mnemonicParsing="false" onAction="#search" prefHeight="39.0" prefWidth="88.0" text="search">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button id="admistratorNavi" fx:id="admistratorNavi" layoutX="126.0" layoutY="225.0" mnemonicParsing="false" onAction="#admistratorNavi" prefHeight="35.0" prefWidth="120.0" text="Admistrator Navi" />
+            <Button id="admistratorNavi" fx:id="admistratorNavi" layoutX="126.0" layoutY="246.0" mnemonicParsing="false" onAction="#admistratorNavi" prefHeight="35.0" prefWidth="120.0" text="Admistrator Navi" />
             <Label layoutX="70.0" layoutY="2.0" text="Library System">
                <font>
                   <Font size="36.0" />
@@ -30,6 +30,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label fx:id="errInfo" layoutX="84.0" layoutY="193.0" prefHeight="25.0" prefWidth="259.0" text="Can not find the member" textFill="#e10b0b">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="idText" layoutX="82.0" layoutY="158.0" prefHeight="30.0" prefWidth="181.0" />
          </children>
       </Pane>
       <Button id="search" fx:id="searchRecord" layoutX="279.0" layoutY="151.0" mnemonicParsing="false" onAction="#searchRecord" prefHeight="39.0" prefWidth="88.0" text="search">
@@ -37,7 +43,6 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="idText" layoutX="84.0" layoutY="142.0" prefHeight="53.0" prefWidth="181.0" />
       <Label layoutX="14.0" layoutY="152.0" text="ID:">
          <font>
             <Font size="24.0" />

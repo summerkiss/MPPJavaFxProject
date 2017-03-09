@@ -11,21 +11,25 @@ import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.CheckoutRecord;
 import edu.mum.cs.mpp.libarysys.business.CheckoutRecordEntry;
 import edu.mum.cs.mpp.libarysys.business.LendableCopy;
+import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Publication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RecordInfoController implements Initializable {
 	
+
+	@FXML
+	private Label idName;
+	
 	@FXML
 	private TableView<CheckoutRecordEntry> tableID;
-	
-
 	@FXML
 	private TableColumn<CheckoutRecordEntry, Integer> memberId;
 	
@@ -43,6 +47,8 @@ public class RecordInfoController implements Initializable {
 	
 	@FXML
 	private TableColumn<CheckoutRecordEntry, LocalDate> dueDateColumn = new TableColumn("Due Date");
+	
+	private LibraryMember member;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -63,25 +69,25 @@ public class RecordInfoController implements Initializable {
 		dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 		
 		
-		tableID.setItems(getEntry());
 		tableID.getColumns().addAll(isbnColumn, copyIdColumn, titleColumn, checkoutDateColumn, dueDateColumn);
 		
 	}
 	
 	public ObservableList<CheckoutRecordEntry> getEntry() {
 		ObservableList<CheckoutRecordEntry> checkoutRecordEntry = FXCollections.observableArrayList();
-		//TODO *************below for test************
-		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>(); 
-		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
-		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
-		//************above for test******************
-				
-		Book book = new Book(1, "123-34522-111235", "caption", Arrays.asList("Yifeng Zhong", "Yang Yu", "Matthew"),true,lendablecopyList);
-		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
-		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
-		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
-		checkoutRecordEntry.add(new CheckoutRecordEntry(new LendableCopy(null,1),LocalDate.now(),LocalDate.now(), book));
+		CheckoutRecord checkoutRecord = member.getRecord();
+		for(CheckoutRecordEntry entry:checkoutRecord.getEntries()){
+			checkoutRecordEntry.add(entry);
+		}
 		return checkoutRecordEntry;
+	}
+
+	public void initDate(LibraryMember member) {
+		
+		this.member = member;
+		idName.setText(member.getId());
+		tableID.setItems(getEntry());
+
 	}
 
 }
