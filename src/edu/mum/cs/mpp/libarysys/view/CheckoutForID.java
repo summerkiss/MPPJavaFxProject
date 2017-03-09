@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import edu.mum.cs.mpp.libarysys.business.Book;
+import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
@@ -38,7 +39,7 @@ public class CheckoutForID implements Initializable {
 	private Label errorInfo;
 	
 	private Book book;
-	private Staff staff;
+	LibraryMember member;
 	
 
 	@Override
@@ -53,11 +54,12 @@ public class CheckoutForID implements Initializable {
 			errorInfo.setVisible(true);
 			return false;
 		}
-//		Staff staff = da.readStaff(idText.getText());
-//		if (staff == null) {
-//			errorInfo.setText("No member ID existed");
-//			return false;
-//		} 
+		LibraryMember member = da.readLibraryMember(idText.getText());
+		if (member == null) {
+			errorInfo.setText("No member ID existed");
+			return false;
+		}
+		this.member = member;
 		return true;
 	}
 	public void checkout(ActionEvent event) throws IOException {
@@ -72,7 +74,7 @@ public class CheckoutForID implements Initializable {
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		CheckoutCopyInfoControl checkoutCopyInfoControl = loader.<CheckoutCopyInfoControl>getController();
-		checkoutCopyInfoControl.initDate(book, "123456");
+		checkoutCopyInfoControl.initDate(book, member.getId());
 		app_stage.setScene(scene);
 		app_stage.show();
 		
