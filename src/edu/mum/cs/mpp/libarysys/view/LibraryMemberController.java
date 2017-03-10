@@ -92,9 +92,6 @@ public class LibraryMemberController {
 	
 	@FXML
 	public void addMember(ActionEvent event){
-		if(iniData!=null&&iniData.size()>0){
-			System.out.println(((LibraryMember)iniData.get("edit")).getId());
-		}
 		if(txtLastName.getText()==null||txtLastName.getText().equals("")
 				||txtFirstName.getText()==null||txtFirstName.getText().equals("")){
 			lbInformation.setText("Last name and first name can not be empty!");			
