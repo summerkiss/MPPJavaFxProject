@@ -75,9 +75,9 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="checkout" layoutX="138.0" layoutY="382.0" mnemonicParsing="false" onAction="#checkout" text="Checkout">
+      <Button fx:id="checkout" layoutX="15.0" layoutY="399.0" mnemonicParsing="false" onAction="#checkout" text="Checkout">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Button>
       <Label fx:id="errorInfo" layoutX="50.0" layoutY="171.0" prefHeight="19.0" prefWidth="214.0" text="No id was found." textFill="#f80b0b" visible="false">
@@ -85,5 +85,10 @@
             <Font size="13.0" />
          </font>
       </Label>
+      <Button fx:id="back" layoutX="332.0" layoutY="399.0" mnemonicParsing="false" onAction="#onBack" text="Back   ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

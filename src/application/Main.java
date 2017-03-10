@@ -1,6 +1,6 @@
 package application;
 
-import com.aquafx_project.AquaFx;
+import edu.mum.cs.mpp.libarysys.business.Staff;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +12,10 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	static private Staff staff;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//BorderPane root = new BorderPane();
 			Parent root = FXMLLoader.load(getClass().getResource(
 					 "/edu/mum/cs/mpp/libarysys/view/Login.fxml"));
 			Scene scene = new Scene(root,400,300);
@@ -27,7 +27,12 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+    public static Staff getStaff() {
+    	return staff;
+    }
+    public static void setStaff(Staff staff) {
+    	Main.staff = staff;
+    }
 	public static void main(String[] args) {
 		launch(args);
 	}

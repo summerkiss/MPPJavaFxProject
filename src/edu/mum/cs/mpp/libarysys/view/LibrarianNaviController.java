@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.mum.cs.mpp.libarysys.business.Authorization;
+import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
+import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,6 +30,10 @@ public class LibrarianNaviController implements Initializable {
 	private TextField isbnText;
 	@FXML
 	private Button searchRecord;
+	@FXML
+	private TextField idText;
+	@FXML
+	private Label errInfo;
 	
 	private Staff staff;
 	public void search(ActionEvent event) throws IOException {
@@ -34,7 +41,15 @@ public class LibrarianNaviController implements Initializable {
 	}
 
 	public void searchRecord(ActionEvent event) throws IOException {
-		startSearchRecord("/edu/mum/cs/mpp/libarysys/view/RecordInfo.fxml", event);
+		LibMemberDataAccessFacade da = new LibMemberDataAccessFacade();
+		LibraryMember member = da.readLibraryMember(idText.getText());
+		if (member == null) {
+			errInfo.setVisible(true);
+			errInfo.setText("Can not find the member ID.");
+			return;
+		}
+		
+		startSearchRecord("/edu/mum/cs/mpp/libarysys/view/RecordInfo.fxml", event, member);
 	}
 
 	public void admistratorNavi(ActionEvent event) throws IOException {
@@ -51,6 +66,7 @@ public class LibrarianNaviController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		admistratorNavi.setDisable(true);
+		errInfo.setVisible(false);
 	}
 	public void initDate(Staff staff) {
 		this.staff = staff;
@@ -70,13 +86,13 @@ public class LibrarianNaviController implements Initializable {
 		app_stage.setScene(scene);
 		app_stage.show();
 	}
-	private void startSearchRecord(String url, ActionEvent event) throws IOException {
+	private void startSearchRecord(String url, ActionEvent event, LibraryMember member) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
-//		librarianNaviController.initDate(staff);
+		RecordInfoController recordInfoController = loader.<RecordInfoController>getController();
+		recordInfoController.initDate(member);
 		app_stage.setScene(scene);
 		app_stage.show();
 	}
