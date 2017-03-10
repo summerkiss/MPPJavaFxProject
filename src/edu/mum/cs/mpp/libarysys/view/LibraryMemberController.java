@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
+import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.collections.FXCollections;
@@ -91,9 +92,6 @@ public class LibraryMemberController {
 	
 	@FXML
 	public void addMember(ActionEvent event){
-		if(iniData!=null&&iniData.size()>0){
-			System.out.println(((LibraryMember)iniData.get("edit")).getId());
-		}
 		if(txtLastName.getText()==null||txtLastName.getText().equals("")
 				||txtFirstName.getText()==null||txtFirstName.getText().equals("")){
 			lbInformation.setText("Last name and first name can not be empty!");			
@@ -161,10 +159,20 @@ public class LibraryMemberController {
 	public void back(ActionEvent event) throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/LibraryMemberSearch.fxml"));
 		Parent root = loader.load();
-		
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root,600,450);
-		LibraryMemberSearchController libraryMemberSearchController = loader.<LibraryMemberSearchController>getController();
+		if(iniData!=null&&iniData.get("page")!=null){		
+			 //loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml"));
+			 loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/".concat(iniData.get("page").toString())));
+			 root = loader.load();
+			 scene = new Scene(root);
+			 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			AdministratorNaviController administratorNaviController = loader.<AdministratorNaviController>getController();
+			//administratorNaviController.initDate(staff);
+			administratorNaviController.initDate((Staff)iniData.get("staff"));
+		}else{
+			LibraryMemberSearchController libraryMemberSearchController = loader.<LibraryMemberSearchController>getController();
+		}
 		stage.setScene(scene);
 		stage.show();
 		
