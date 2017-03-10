@@ -2,6 +2,7 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
 import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
@@ -19,7 +20,7 @@ public class AdministratorNaviController implements Initializable {
 	@FXML
 	private Button addUser;
 	@FXML
-	private Button updateUser;
+	private Button btnSearchUser;
 	@FXML
 	private Button addBook;
 	@FXML
@@ -31,11 +32,30 @@ public class AdministratorNaviController implements Initializable {
 
 
 	public void addUser(ActionEvent event) throws IOException {
-		System.out.println("this in add user.");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/LibraryMemberAdd.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LibraryMemberController libraryMemberController = loader.<LibraryMemberController>getController();
+		Hashtable iniData = new Hashtable();
+		iniData.put("page", "administratorNavi.fxml");
+		iniData.put("staff", staff);
+		libraryMemberController.setIniData(iniData);
+		app_stage.setScene(scene);
+		app_stage.show();
 	}
-	public void updateUser(ActionEvent event) throws IOException {
-		System.out.println("this in update user.");
-		addBook.setDisable(false);
+	public void searchUser(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/LibraryMemberSearch.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LibraryMemberSearchController ibraryMemberSearchController = loader.<LibraryMemberSearchController>getController();
+		Hashtable iniData = new Hashtable();
+		iniData.put("page", "administratorNavi.fxml");
+		iniData.put("staff", staff);
+		ibraryMemberSearchController.setIniData(iniData);
+		app_stage.setScene(scene);
+		app_stage.show();
 
 	}
 
