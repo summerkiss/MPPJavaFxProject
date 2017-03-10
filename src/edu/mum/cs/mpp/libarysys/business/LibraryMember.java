@@ -36,15 +36,6 @@ public class LibraryMember implements Serializable {
 	private String zip;
 	private String phone;
 	
-	public void checkout(LendableCopy copy, LocalDate checkoutDate, LocalDate dueDate) {
-		//TODO: need to fix, because book is null
-		CheckoutRecordEntry entry = new CheckoutRecordEntry(copy, checkoutDate, dueDate, null); 
-		record.addEntry(entry);
-		
-	}
-	
-	
-	
 	public String getId() {
 		return id;
 	}
@@ -163,4 +154,9 @@ public class LibraryMember implements Serializable {
 	}
 	
 	private static final long serialVersionUID = -2226197306790714013L;
+	public void updateRecord(Book book, String copyID) {
+		CheckoutRecordEntry checkoutRecordEntry = new CheckoutRecordEntry(Integer.parseInt(copyID), LocalDate.now(), LocalDate.now().plusDays(20), book);
+		record.addEntry(checkoutRecordEntry);
+		
+	}
 }

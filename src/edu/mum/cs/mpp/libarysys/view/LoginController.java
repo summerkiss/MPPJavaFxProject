@@ -2,7 +2,7 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 
-
+import application.Main;
 import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
@@ -45,20 +45,21 @@ public class LoginController {
 		//Staff s = new Staff("Yifeng","123456",Authorization.ADMIN);
 //		Staff s = new Staff("Rowe","123456",Authorization.LIBRARIAN);		
 		staff = s;
+		Main.setStaff(s);
 //********************above***********************************		
-////		if(staff==null||
-////				!staff.getPassword().equals(txtPwd.getText())){
-////			lbInformation.setText("User name or password is not correct");			
-////			lbInformation.visibleProperty().set(true);
-////		} else if(staff.getPassword().equals(txtPwd.getText())){
-//			this.staff = staff;
-//			if (staff.getAu() == Authorization.BOTH ||
-//				staff.getAu() == Authorization.LIBRARIAN) {
+		if(staff==null||
+				!staff.getPassword().equals(txtPwd.getText())){
+			lbInformation.setText("User name or password is not correct");			
+			lbInformation.visibleProperty().set(true);
+		} else if(staff.getPassword().equals(txtPwd.getText())){
+			this.staff = staff;
+			if (staff.getAu() == Authorization.BOTH ||
+				staff.getAu() == Authorization.LIBRARIAN) {
 				startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
-//			} else {
-//				startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
-//			}
-//		}
+			} else {
+				startForAdministrator("/edu/mum/cs/mpp/libarysys/view/administratorNavi.fxml", event);
+			}
+		}
 		
 	}
 	private void startForLibrarian(String url, ActionEvent event) throws IOException {

@@ -5,10 +5,14 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import application.Main;
 import edu.mum.cs.mpp.libarysys.business.Book;
+import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
+import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,9 +40,11 @@ public class CheckoutForID implements Initializable {
 	private TextField idText;
 	@FXML
 	private Label errorInfo;
+	@FXML
+	private Button back;
 	
 	private Book book;
-	private Staff staff;
+	LibraryMember member;
 	
 
 	@Override
@@ -47,18 +53,32 @@ public class CheckoutForID implements Initializable {
 	}
 	public boolean search() {
 		errorInfo.setVisible(false);
-		DataAccess da = new DataAccessFacade();
+		LibMemberDataAccess da = new LibMemberDataAccessFacade();
 		if(idText.getLength() == 0) {
 			errorInfo.setText("Please input the member ID");
 			errorInfo.setVisible(true);
 			return false;
 		}
-//		Staff staff = da.readStaff(idText.getText());
-//		if (staff == null) {
-//			errorInfo.setText("No member ID existed");
-//			return false;
-//		} 
+		LibraryMember member = da.readLibraryMember(idText.getText());
+		if (member == null) {
+			errorInfo.setText("No member ID existed");
+			return false;
+		}
+		this.member = member;
 		return true;
+	}
+	public void onBack(ActionEvent event) throws IOException {
+		startForLibrarian("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml", event);
+	}
+	private void startForLibrarian(String url, ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
+		librarianNaviController.initDate(Main.getStaff());
+		app_stage.setScene(scene);
+		app_stage.show();	
 	}
 	public void checkout(ActionEvent event) throws IOException {
 		if (!search()) {
@@ -72,7 +92,7 @@ public class CheckoutForID implements Initializable {
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		CheckoutCopyInfoControl checkoutCopyInfoControl = loader.<CheckoutCopyInfoControl>getController();
-		checkoutCopyInfoControl.initDate(book, "123456");
+		checkoutCopyInfoControl.initDate(book, member);
 		app_stage.setScene(scene);
 		app_stage.show();
 		
