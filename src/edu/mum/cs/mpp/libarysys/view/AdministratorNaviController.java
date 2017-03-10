@@ -3,7 +3,6 @@ package edu.mum.cs.mpp.libarysys.view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import javafx.event.ActionEvent;
@@ -45,6 +44,8 @@ public class AdministratorNaviController implements Initializable {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		NewBookController newBookController = loader.<NewBookController>getController();
+		newBookController.initData(staff);
 		app_stage.setScene(scene);
 		app_stage.show();
 
@@ -62,9 +63,17 @@ public class AdministratorNaviController implements Initializable {
 
 	}
 	public void addCopies(ActionEvent event) throws IOException {
-		System.out.println("this in add copies.");
-
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/librarianNa.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
+		librarianNaviController.initDate(staff);
+		app_stage.setScene(scene);
+		app_stage.show();
 	}
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		libraryNavi.setDisable(true);
