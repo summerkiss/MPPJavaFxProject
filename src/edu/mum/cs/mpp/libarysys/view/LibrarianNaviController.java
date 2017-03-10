@@ -34,7 +34,12 @@ public class LibrarianNaviController implements Initializable {
 	private TextField idText;
 	@FXML
 	private Label errInfo;
-	
+
+	@FXML
+	private Label idLabel;
+	@FXML
+	private Label forLibrarian;
+
 	private Staff staff;
 	public void search(ActionEvent event) throws IOException {
 		startSearchResult("/edu/mum/cs/mpp/libarysys/view/BookInformation.fxml", event);
@@ -48,7 +53,7 @@ public class LibrarianNaviController implements Initializable {
 			errInfo.setText("Can not find the member ID.");
 			return;
 		}
-		
+
 		startSearchRecord("/edu/mum/cs/mpp/libarysys/view/RecordInfo.fxml", event, member);
 	}
 
@@ -68,11 +73,22 @@ public class LibrarianNaviController implements Initializable {
 		admistratorNavi.setDisable(true);
 		errInfo.setVisible(false);
 	}
+
+
 	public void initDate(Staff staff) {
 		this.staff = staff;
 		if (staff.getAu() == Authorization.ADMIN ||
 			staff.getAu() == Authorization.BOTH) {
 			admistratorNavi.setDisable(false);
+		}
+
+
+		if (staff.getAu() == Authorization.ADMIN){
+
+			forLibrarian.setVisible(false);
+			idLabel.setVisible(false);
+			idText.setVisible(false);
+			searchRecord.setVisible(false);
 		}
 
 	}
@@ -96,5 +112,5 @@ public class LibrarianNaviController implements Initializable {
 		app_stage.setScene(scene);
 		app_stage.show();
 	}
-	
+
 }

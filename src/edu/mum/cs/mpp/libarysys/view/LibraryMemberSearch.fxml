@@ -18,9 +18,10 @@
       <Label id="lbAlert" fx:id="lbAlert" layoutX="238.0" layoutY="88.0" prefHeight="27.0" prefWidth="223.0" />
       <TableView id="tbMember" fx:id="tbMember" layoutX="45.0" layoutY="121.0" prefHeight="326.0" prefWidth="472.0" />
       <Button id="btnAdd" fx:id="btnAdd" layoutX="45.0" layoutY="459.0" mnemonicParsing="false" onAction="#addNewMember" text="Add" />
-      <Button id="btnRecord" fx:id="btnRecord" layoutX="455.0" layoutY="459.0" mnemonicParsing="false" text="Record" />
+      <Button id="btnRecord" fx:id="btnRecord" layoutX="373.0" layoutY="459.0" mnemonicParsing="false" text="Record" />
       <Button id="btnEdit" fx:id="btnEdit" layoutX="100.0" layoutY="459.0" mnemonicParsing="false" onAction="#editNewMember" text="Edit" />
       <Button id="btnDelete" fx:id="btnDelete" layoutX="153.0" layoutY="459.0" mnemonicParsing="false" onAction="#deleteNewMember" text="Delete" />
       <Button id="btnCheckOut" fx:id="btnCheckOut" layoutX="281.0" layoutY="459.0" mnemonicParsing="false" text="CheckOut" />
+      <Button id="btnBack" fx:id="btnBack" layoutX="468.0" layoutY="459.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

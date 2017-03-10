@@ -55,6 +55,11 @@
                   <Font size="24.0" />
                </font>
             </Button>
+            <Button id="addCopy" fx:id="addCopy" layoutX="166.0" layoutY="291.0" mnemonicParsing="false" onAction="#addCopy" prefHeight="57.0" prefWidth="117.0" text="Add Copy">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Label layoutX="32.0" layoutY="-9.0" text="Book Information" AnchorPane.leftAnchor="32.0">
