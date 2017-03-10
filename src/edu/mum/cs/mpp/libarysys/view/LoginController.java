@@ -2,7 +2,7 @@ package edu.mum.cs.mpp.libarysys.view;
 
 import java.io.IOException;
 
-
+import application.Main;
 import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
@@ -45,6 +45,7 @@ public class LoginController {
 		//Staff s = new Staff("Yifeng","123456",Authorization.ADMIN);
 //		Staff s = new Staff("Rowe","123456",Authorization.LIBRARIAN);		
 		staff = s;
+		Main.setStaff(s);
 //********************above***********************************		
 ////		if(staff==null||
 ////				!staff.getPassword().equals(txtPwd.getText())){

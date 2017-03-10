@@ -8,11 +8,11 @@ import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
 
 public class CheckoutRecordEntry implements Serializable {
 	private Book book;
-	private LendableCopy copy;
+	private int copyID;
 	private LocalDate checkoutDate;
 	private LocalDate dueDate;
-	public CheckoutRecordEntry(LendableCopy copy, LocalDate checkoutDate, LocalDate dueDate, Book book){ 
-		this.copy = copy;
+	public CheckoutRecordEntry(int copyID, LocalDate checkoutDate, LocalDate dueDate, Book book){ 
+		this.copyID = copyID;
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
 		this.book = book;
@@ -21,13 +21,13 @@ public class CheckoutRecordEntry implements Serializable {
 		return "[" + "checkoutdate:" + 
 	        checkoutDate.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN)) +
 	        ", dueDate: " + dueDate.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN)) +
-	        ", publication: " + copy + "]";
+	        ", publication: " + copyID + "]";
 	}
 	public String getIsbn() {
 		return book.getIsbn();
 	}
 	public Integer getCopyId() {
-		return copy.getCopyId();
+		return copyID;
 	}
 	public String getTitle() {
 		return book.getTitle();
