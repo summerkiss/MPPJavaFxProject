@@ -64,6 +64,17 @@
                </BorderPane.margin>
             </VBox>
          </center>
+         <bottom>
+            <FlowPane alignment="CENTER_LEFT" prefHeight="94.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="backBtn" fx:id="backBtn" mnemonicParsing="false" onAction="#backBtn" prefHeight="40.0" prefWidth="88.0" text="Back">
+                     <FlowPane.margin>
+                        <Insets left="50.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

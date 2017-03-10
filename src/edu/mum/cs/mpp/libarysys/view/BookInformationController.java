@@ -23,10 +23,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class BookInformationController implements Initializable {
-	
+
 	@FXML
 	private Button checkout;
-	
+
 	@FXML
 	private Label isbn;
 	@FXML
@@ -35,11 +35,14 @@ public class BookInformationController implements Initializable {
 	private Label authors;
 	@FXML
 	private Label number;
-	
+
+	@FXML
+	private Button addCopy;
+
 	private Staff staff;
-	
+
 	private Book book;
-	
+
 	public void checkout(ActionEvent event) throws IOException {
 		startCheckoutProcedure("/edu/mum/cs/mpp/libarysys/view/CheckoutForID.fxml", event);
 	}
@@ -52,15 +55,15 @@ public class BookInformationController implements Initializable {
 		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
 		librarianNaviController.initDate(staff);
 		app_stage.setScene(scene);
-		app_stage.show();		
-		
+		app_stage.show();
+
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		//TODO *************below for test************
-		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>(); 
+		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>();
 		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
 		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
 		//************above for test******************
@@ -81,12 +84,12 @@ public class BookInformationController implements Initializable {
 			strbld.append(";");
 		}
 		authors.setText(strbld.toString());
-		
+
 	}
 	public void initDate(Staff staff) {
 		this.staff = staff;
 	}
-	
+
 	private void startCheckoutProcedure(String url, ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
 		Parent root = loader.load();
@@ -95,7 +98,11 @@ public class BookInformationController implements Initializable {
 		CheckoutForID checkoutForID = loader.<CheckoutForID>getController();
 		checkoutForID.initDate(book);
 		app_stage.setScene(scene);
-		app_stage.show();		
+		app_stage.show();
+	}
+
+	public void addCopy(ActionEvent event){
+		book.addCopy();
 	}
 
 }
