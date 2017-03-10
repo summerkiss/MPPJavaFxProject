@@ -7,10 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.LendableCopy;
 import edu.mum.cs.mpp.libarysys.business.Publication;
 import edu.mum.cs.mpp.libarysys.business.Staff;
+import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +57,8 @@ public class BookInformationController implements Initializable {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		LibrarianNaviController librarianNaviController = loader.<LibrarianNaviController>getController();
 		librarianNaviController.initDate(staff);
+		DataAccess da = new DataAccessFacade();
+		da.saveBook(book);
 		app_stage.setScene(scene);
 		app_stage.show();
 
@@ -67,7 +72,7 @@ public class BookInformationController implements Initializable {
 		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
 		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
 		//************above for test******************
-		Book book = new Book(123,"123-456-765", "yes",Arrays.asList("abc","cds","sig","odi"),true,lendablecopyList);
+		Book book = new Book(123,"9780553418026", "The Martian",Arrays.asList("Andy Weir"),true,lendablecopyList);
 		this.book = book;
 		isbn.setText(book.getIsbn());
 		title.setText(book.getTitle());
@@ -88,6 +93,11 @@ public class BookInformationController implements Initializable {
 	}
 	public void initDate(Staff staff) {
 		this.staff = staff;
+
+		if(staff.getAu() == Authorization.ADMIN){
+			checkout.setDisable(true);
+		}
+
 	}
 
 	private void startCheckoutProcedure(String url, ActionEvent event) throws IOException {
