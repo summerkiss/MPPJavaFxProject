@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import application.Main;
 import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccessFacade;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.event.ActionEvent;
@@ -73,6 +75,8 @@ public class CheckoutCopyInfoControl implements Initializable  {
 			if(da.saveLibraryMember(member)) {
 				checkout.setText("Back");
 			}
+			BookDataAccess daBook = new BookDataAccessFacade();
+			daBook.saveBook(book);
 		}
 		
 	}

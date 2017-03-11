@@ -5,8 +5,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.mum.cs.mpp.libarysys.business.Authorization;
+import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccessFacade;
 import edu.mum.cs.mpp.libarysys.dataaccess.LibMemberDataAccessFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,7 +45,14 @@ public class LibrarianNaviController implements Initializable {
 
 	private Staff staff;
 	public void search(ActionEvent event) throws IOException {
-		startSearchResult("/edu/mum/cs/mpp/libarysys/view/BookInformation.fxml", event);
+		BookDataAccess da = new BookDataAccessFacade();
+		Book book = da.readBook(isbnText.getText());
+		if (book == null) {
+			errInfo.setVisible(true);
+			errInfo.setText("Can not find the book");
+			return;
+		}
+		startSearchResult("/edu/mum/cs/mpp/libarysys/view/BookInformation.fxml", event, book);
 	}
 
 	public void searchRecord(ActionEvent event) throws IOException {
@@ -92,13 +102,13 @@ public class LibrarianNaviController implements Initializable {
 		}
 
 	}
-	private void startSearchResult(String url, ActionEvent event) throws IOException {
+	private void startSearchResult(String url, ActionEvent event, Book book) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		BookInformationController bookInformationController = loader.<BookInformationController>getController();
-		bookInformationController.initDate(staff);
+		bookInformationController.initDate(staff, book);
 		app_stage.setScene(scene);
 		app_stage.show();
 	}

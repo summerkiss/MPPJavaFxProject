@@ -7,10 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import edu.mum.cs.mpp.libarysys.business.Authorization;
 import edu.mum.cs.mpp.libarysys.business.Book;
 import edu.mum.cs.mpp.libarysys.business.LendableCopy;
 import edu.mum.cs.mpp.libarysys.business.Publication;
 import edu.mum.cs.mpp.libarysys.business.Staff;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccessFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,14 +64,13 @@ public class BookInformationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		//TODO *************below for test************
-		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>();
-		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
-		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
-		//************above for test******************
-		Book book = new Book(123,"123-456-765", "yes",Arrays.asList("abc","cds","sig","odi"),true,lendablecopyList);
+	}
+	public void initDate(Staff staff, Book book) {
+		this.staff = staff;
 		this.book = book;
+		if (staff.getAu() == Authorization.LIBRARIAN) {
+			addCopy.setVisible(false);
+		}
 		isbn.setText(book.getIsbn());
 		title.setText(book.getTitle());
 		if(book.isAvailable()) {
@@ -85,9 +87,6 @@ public class BookInformationController implements Initializable {
 		}
 		authors.setText(strbld.toString());
 
-	}
-	public void initDate(Staff staff) {
-		this.staff = staff;
 	}
 
 	private void startCheckoutProcedure(String url, ActionEvent event) throws IOException {

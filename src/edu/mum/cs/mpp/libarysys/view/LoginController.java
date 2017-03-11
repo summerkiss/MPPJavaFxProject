@@ -41,8 +41,8 @@ public class LoginController {
 //*********************below*************************************
 		//Data storage function does not work yet, use the code below for test
 		//Staff staff = (Staff)da.readStaff(txtUsername.getText());
-		Staff s = new Staff("YuYang","123456",Authorization.BOTH);
-//		Staff s = new Staff("YiHong","123456",Authorization.ADMIN);
+//		Staff s = new Staff("YuYang","123456",Authorization.BOTH);
+		Staff s = new Staff("Yifeng","123456",Authorization.LIBRARIAN);
 //		Staff s = new Staff("Rowe","123456",Authorization.LIBRARIAN);
 		staff = s;
 		Main.setStaff(s);
