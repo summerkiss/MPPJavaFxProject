@@ -14,6 +14,8 @@ import edu.mum.cs.mpp.libarysys.business.Publication;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccess;
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccess;
+import edu.mum.cs.mpp.libarysys.dataaccess.BookDataAccessFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,14 +68,13 @@ public class BookInformationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		//TODO *************below for test************
-		List<LendableCopy> lendablecopyList = new ArrayList<LendableCopy>();
-		lendablecopyList.add(new LendableCopy(new Publication("first one"),1));
-		lendablecopyList.add(new LendableCopy(new Publication("second"),2));
-		//************above for test******************
-		Book book = new Book(123,"9780553418026", "The Martian",Arrays.asList("Andy Weir"),true,lendablecopyList);
+	}
+	public void initDate(Staff staff, Book book) {
+		this.staff = staff;
 		this.book = book;
+		if (staff.getAu() == Authorization.LIBRARIAN) {
+			addCopy.setVisible(false);
+		}
 		isbn.setText(book.getIsbn());
 		title.setText(book.getTitle());
 		if(book.isAvailable()) {
