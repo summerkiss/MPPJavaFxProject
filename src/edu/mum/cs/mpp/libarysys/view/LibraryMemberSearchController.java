@@ -201,7 +201,7 @@ public class LibraryMemberSearchController {
 		// Parent root =
 		// FXMLLoader.load(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/LibraryMemberAdd.fxml"));
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root, 600, 400);
+		Scene scene = new Scene(root, 600, 500);
 		// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Hashtable iniData = new Hashtable();
 		iniData.put("edit", member);
