@@ -1,5 +1,6 @@
 package edu.mum.cs.mpp.libarysys.view;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,12 +16,18 @@ import edu.mum.cs.mpp.libarysys.business.LibraryMember;
 import edu.mum.cs.mpp.libarysys.business.Staff;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class LibraryMemberRecordController {
 	@FXML private Label lbLibMember;	
@@ -80,28 +87,36 @@ public class LibraryMemberRecordController {
 		if(iniData!=null&&iniData.size()>0){
 			member = (LibraryMember)iniData.get("edit");
 			if(member!=null){
-				final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-				Book book1 = new Book(5, "11-11", "ÆßÁúÖé", Arrays.asList("ÄñÉ½Ã÷"), true, null);	
-				LocalDate checkDate = LocalDate.parse("24-12-2014", dtf);
-				LocalDate dueDate = LocalDate.parse("31-12-2014", dtf);
-				CheckoutRecordEntry entry1 = new CheckoutRecordEntry(2, checkDate, dueDate, book1);
+				if(member.getRecord()==null||member.getRecord().getEntries()==null){//test data 
+					final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+					Book book1 = new Book(5, "11-11", "ÆßÁúÖé", Arrays.asList("ÄñÉ½Ã÷"), true, null);	
+					LocalDate checkDate = LocalDate.parse("24-12-2014", dtf);
+					LocalDate dueDate = LocalDate.parse("31-12-2014", dtf);
+					CheckoutRecordEntry entry1 = new CheckoutRecordEntry(2, checkDate, dueDate, book1);
+					
+					Book book2 = new Book(5, "22-11", "Thriller", Arrays.asList("Micheal Jackson"), true, null);	
+					checkDate = LocalDate.parse("02-02-2017", dtf);
+					dueDate = LocalDate.parse("23-02-2017", dtf);
+					CheckoutRecordEntry entry2 = new CheckoutRecordEntry(2, checkDate, dueDate, book2);
+					
+					Book book3 = new Book(5, "33-11", "Thinking in Java (4th Edition)", Arrays.asList("Bruce Eckel"), true, null);	
+					checkDate = LocalDate.parse("18-02-2017", dtf);
+					dueDate = LocalDate.parse("25-02-2017", dtf);
+					CheckoutRecordEntry entry3 = new CheckoutRecordEntry(2, checkDate, dueDate, book3);
+					
+					CheckoutRecord record = new CheckoutRecord();
+					record.addEntry(entry1);
+					record.addEntry(entry2);
+					record.addEntry(entry3);
+					data =  FXCollections.observableArrayList(
+							 record.getEntries());
+				}else{
+					
+					data =  FXCollections.observableArrayList(
+							 member.getRecord().getEntries());
+				}
 				
-				Book book2 = new Book(5, "22-11", "Thriller", Arrays.asList("Micheal Jackson"), true, null);	
-				checkDate = LocalDate.parse("02-02-2017", dtf);
-				dueDate = LocalDate.parse("23-02-2017", dtf);
-				CheckoutRecordEntry entry2 = new CheckoutRecordEntry(2, checkDate, dueDate, book2);
-				
-				Book book3 = new Book(5, "33-11", "Thinking in Java (4th Edition)", Arrays.asList("Bruce Eckel"), true, null);	
-				checkDate = LocalDate.parse("18-02-2017", dtf);
-				dueDate = LocalDate.parse("25-02-2017", dtf);
-				CheckoutRecordEntry entry3 = new CheckoutRecordEntry(2, checkDate, dueDate, book3);
-				
-				CheckoutRecord record = new CheckoutRecord();
-				record.addEntry(entry1);
-				record.addEntry(entry2);
-				record.addEntry(entry3);
-				 data =  FXCollections.observableArrayList(
-						 record.getEntries());
+				 
 				 tbCheckoutRecord.setItems(data);
 			}
 				
@@ -109,6 +124,28 @@ public class LibraryMemberRecordController {
 		}else{
 			System.out.println("member is null");
 		}
+	}
+	
+	@FXML
+	public void back(ActionEvent event) throws IOException{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/LibraryMemberSearch.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		if(iniData!=null&&iniData.get("page")!=null){
+			 loader = new FXMLLoader(getClass().getResource("/edu/mum/cs/mpp/libarysys/view/".concat(iniData.get("page").toString())));
+			 root = loader.load();
+			 scene = new Scene(root);
+			 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			AdministratorNaviController administratorNaviController = loader.<AdministratorNaviController>getController();
+			//administratorNaviController.initDate(staff);
+			administratorNaviController.initDate((Staff)iniData.get("staff"));
+		}else{
+			LibraryMemberSearchController libraryMemberSearchController = loader.<LibraryMemberSearchController>getController();
+		}
+		stage.setScene(scene);
+		stage.show();
+		
 	}
 	
 }
