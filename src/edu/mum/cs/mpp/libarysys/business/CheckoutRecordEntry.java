@@ -3,6 +3,7 @@ package edu.mum.cs.mpp.libarysys.business;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
 
 import edu.mum.cs.mpp.libarysys.dataaccess.DataAccessFacade;
 
@@ -37,5 +38,8 @@ public class CheckoutRecordEntry implements Serializable {
 	}
 	public LocalDate getDueDate() {
 		return dueDate;
+	}
+	public String getAuthorPrintList() {
+		return  book.getAuthorPrintList();
 	}
 }

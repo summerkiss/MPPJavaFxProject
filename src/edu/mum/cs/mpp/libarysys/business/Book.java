@@ -3,6 +3,7 @@ package edu.mum.cs.mpp.libarysys.business;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Book extends Publication implements Serializable {
 	private int id;
@@ -12,10 +13,12 @@ public class Book extends Publication implements Serializable {
 	private List<LendableCopy> lendableCopyList;
 	private int totalCopyCount;
 	private List<String> authorList;
+	private String authorPrintList;
 
 
 
 
+	
 	public Book(int id, String isbn, String title, List<String> authors, boolean available, List<LendableCopy> lendableCopyList) {
 		super(title);
 		this.id = id;
@@ -54,6 +57,12 @@ public class Book extends Publication implements Serializable {
 			available = false;
 		}
 		
+	}
+	
+	public String getAuthorPrintList() {
+		 authorPrintList = authorList.stream().collect(Collectors.joining("\n"));	
+		 System.out.println("authorPrintList====="+authorPrintList);
+		 return authorPrintList;
 	}
 	
 	public String getIsbn() {
