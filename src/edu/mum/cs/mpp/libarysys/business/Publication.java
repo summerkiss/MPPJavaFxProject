@@ -17,6 +17,8 @@ public class Publication implements Serializable {
 		return dateDue;
 	}
 	public String getTitle() {
+		System.out.println("title====="+title);
 		return title;
+	
 	}
 }

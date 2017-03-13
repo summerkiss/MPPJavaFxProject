@@ -6,20 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.cs.mpp.libarysys.view.LibraryMemberRecordController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="600.0">
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView id="tbCheckoutRecord" layoutX="54.0" layoutY="82.0" prefHeight="364.0" prefWidth="492.0" />
-                  <Label id="lbLibMember" layoutX="54.0" layoutY="42.0" text="Label">
+                  <TableView id="tbCheckoutRecord" fx:id="tbCheckoutRecord" layoutX="54.0" layoutY="82.0" prefHeight="364.0" prefWidth="492.0" />
+                  <Label id="lbLibMember" fx:id="lbLibMember" layoutX="54.0" layoutY="42.0" text="Record List">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button id="btnBack" layoutX="497.0" layoutY="459.0" mnemonicParsing="false" text="Back" />
+                  <Button id="btnBack" fx:id="btnBack" layoutX="497.0" layoutY="459.0" mnemonicParsing="false" onAction="#back" text="Back" />
                </children>
             </AnchorPane>
          </center>
