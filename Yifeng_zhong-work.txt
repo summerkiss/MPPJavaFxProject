@@ -1,0 +1,5 @@
+1.Create the navigation page which is used after staff login in.
+2.Finish the checkout function for librarian.
+3.Ffinish search book function for librarian.
+4.Finish search library member checking out record.
+5.Refactor the function of storing function for books.
